@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 
     //Checking for email duplication
     const emailExist = await  User.findOne({email: req.body.email});
-    if(emailExist) return res.status(400).send('Email already exist');
+    if(emailExist) return res.status(400).send('emailExist');
 
     //Hash the password
     const salt = await bcrypt.genSaltSync(10);
@@ -43,11 +43,11 @@ router.post('/login', async (req, res) => {
 
     //Checking for email duplication
     const user = await  User.findOne({email: req.body.email});
-    if(!user) return res.status(400).send('Email do not exist');
+    if(!user) return res.status(400).send('emailDoNotExist');
 
     //Check if password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password);
-    if(!validPass) return res.status(400).send('Invalid password');
+    if(!validPass) return res.status(400).send('invalidPassword');
 
     //Create and assign a token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);

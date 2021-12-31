@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 //Imports routs
 const authRoute = require('./routes/auth');
+const vehicleRoute = require('./routes/vehicle');
 
 
 dotenv.config();
@@ -25,5 +26,6 @@ app.use(cors());
 
 //Route Middllewares
 app.use('/api/user', authRoute);
+app.use('/api', vehicleRoute);
 
 app.listen(3000, () => console.log('Server running'));

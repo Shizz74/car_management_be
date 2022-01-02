@@ -11,9 +11,13 @@ router.post('/register', async (req, res) => {
     //Return code 400 and send error message if validation is not passed
     if(error) return res.status(400).send(error.details[0].message);
 
+    //Checking for user name duplication
+    const nameExist = await  User.findOne({name: req.body.name});
+    if(nameExist) return res.status(400).send('name_exist');
+
     //Checking for email duplication
     const emailExist = await  User.findOne({email: req.body.email});
-    if(emailExist) return res.status(400).send('emailExist');
+    if(emailExist) return res.status(400).send('email_exist');
 
     //Hash the password
     const salt = await bcrypt.genSaltSync(10);
@@ -23,6 +27,7 @@ router.post('/register', async (req, res) => {
     const user = new User({
         name: req.body.name,
         email: req.body.email,
+        role: req.body.role,
         password: hashedPassword
     });
     try{

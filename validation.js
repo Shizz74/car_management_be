@@ -12,10 +12,10 @@ const registerValidation = data => {
                   err.message = `${err.local.key}_is_empty`;
                   break;
                 case "string.min":
-                  err.message = `${err.local.key}_to_short`;
+                  err.message = `${err.local.key}_too_short`;
                   break;
                 case "string.max":
-                  err.message = `${err.local.key}_to_long`;
+                  err.message = `${err.local.key}_too_long`;
                   break;
                   case "string.pattern.base":
                   err.message = `${err.local.key}_wrong_char`;
@@ -33,10 +33,10 @@ const registerValidation = data => {
                   err.message = `${err.local.key}_is_empty`;
                   break;
                 case "string.min":
-                  err.message = `${err.local.key}_to_short`;
+                  err.message = `${err.local.key}_too_short`;
                   break;
                 case "string.max":
-                  err.message = `${err.local.key}_to_long`;
+                  err.message = `${err.local.key}_too_long`;
                   break;
                   case "string.email":
                   err.message = `${err.local.key}_wrong`;
@@ -54,10 +54,10 @@ const registerValidation = data => {
                   err.message = `${err.local.key}_is_empty`;
                   break;
                 case "string.min":
-                  err.message = `${err.local.key}_to_short`;
+                  err.message = `${err.local.key}_too_short`;
                   break;
                 case "string.max":
-                  err.message = `${err.local.key}_to_long`;
+                  err.message = `${err.local.key}_too_long`;
                   break;
                 default:
                   break;

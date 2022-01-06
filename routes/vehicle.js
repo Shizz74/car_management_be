@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const verify = require('./verifyToken');
+const verifyToken = require('./verifyToken');
 
-router.get('/vehicle', verify,  (req, res) => {
+router.get('/vehicle', verifyToken,  (req, res) => {
     // res.json({
     //     posts: {
     //         title: 'lol',

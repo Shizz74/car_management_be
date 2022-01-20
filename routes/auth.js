@@ -28,7 +28,8 @@ router.post('/register', async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         role: req.body.role,
-        password: hashedPassword
+        password: hashedPassword,
+        vehicle: {}
     });
     try{
         const savedUser = await user.save();
@@ -48,11 +49,11 @@ router.post('/login', async (req, res) => {
 
     //Checking if email exist
     const user = await  User.findOne({email: req.body.email});
-    if(!user) return res.status(400).send('emailDoNotExist');
+    if(!user) return res.status(400).send('email_do_not_exist');
 
     //Check if password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password);
-    if(!validPass) return res.status(400).send('invalidPassword');
+    if(!validPass) return res.status(400).send('invalid_password');
 
     //Create and assign a token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: '1h' });
